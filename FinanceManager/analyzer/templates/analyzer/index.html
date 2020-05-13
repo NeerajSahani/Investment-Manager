@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Welcome to Stock Advisor{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{% static 'styles/chat.css' %}">
+    <div class="w3-content" style="max-width:1400px">
+
+        <!-- Header -->
+        <header class="w3-container w3-center w3-padding-32">
+            <h1><b>Investment Helper</b></h1>
+            <p>Welcome to the world of <span class="w3-tag">investment</span></p>
+        </header>
+
+        <!-- Grid -->
+        <div class="w3-row">
+
+            <!-- Blog entries -->
+            <div class="w3-col l8 s12">
+                <!-- Blog entry -->
+                {% for i in company %}
+                    <div class="w3-card-4 w3-margin w3-white">
+                        <a href="{% url 'analyzer:detail' i.slug %}">
+                            <img
+                                    {% if i.image_url %}
+                                        src="{{ i.image_url }}"
+                                    {% elif i.image %}
+                                        src="{{ i.image.url }}"
+                                    {% else %}
+                                        src="https://www.w3schools.com/w3images/woods.jpg"
+                                    {% endif %}
+                                        alt="Nature" style="width:100%;" class="responsive">
+                        </a>
+                        <div class="w3-container">
+                            &nbsp
+                            <h3><b>{{ i.name }}</b></h3>
+                            <h5>{{ i.symbol }}, <span class="badge badge-info">{{ i.tag.first }}</span>
+                                <span class="w3-opacity"> {{ i.date }}</span>
+                            </h5>
+                        </div>
+
+                        <div class="w3-container">
+                            <p>{{ i.description|truncatewords:30 }}</p>
+                            <div class="w3-row">
+                                <div class="w3-col m8 s12">
+                                    <p>
+                                        <a href="{% url 'analyzer:detail' i.slug %}">
+                                            <button class="w3-button w3-padding-large w3-white w3-border">
+                                                <b>READ MORE »</b>
+                                            </button>
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="w3-col m4 w3-hide-small">
+                                    <p><span class="w3-padding-large w3-right">
+                                            <i class="fa fa-eye"></i>
+                                            <span class="w3-hover-green">{{ i.views }}</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                {% empty %}
+                    <h3>EMPTY</h3>
+                {% endfor %}
+
+
+                <!-- END BLOG ENTRIES -->
+            </div>
+
+            <!-- Introduction menu -->
+            <div class="w3-col l4">
+                <!-- About Card -->
+                <div class="w3-card w3-margin w3-margin-top">
+                    <img src="https://bit.ly/2m73XHN" style="width:100%" alt="img">
+                    <div class="w3-container w3-white">
+                        &nbsp
+                        <h4><b>Investment Adviser</b></h4>
+                        <p>
+                            Getting into Stock Market: A complete Guide for beginners. You can easily find which company
+                            is going to make profit and simply you can invest and make profit. Our analysis reduces the
+                            risk from 100% to 15%.
+                        </p>
+                    </div>
+                </div>
+                <hr>
+
+                <!-- Best Performance -->
+                <div class="w3-card w3-margin">
+                    <div class="w3-container w3-padding">
+                        &nbsp
+                        <h4>Trending Companies</h4>
+                    </div>
+
+                    <ul class="w3-ul w3-hoverable w3-white">
+                        {% for i in Best %}
+                            <a href="{% url 'analyzer:detail' i.company.slug %}" class="text-dark"
+                               style="text-decoration: none">
+                                <li class="w3-padding-16">
+                                    <img {% if i.company.image_url %}
+                                        src="{{ i.company.image_url }}"
+                                    {% elif i.image %}
+                                        src="{{ i.company.image }}"
+                                    {% else %}
+                                        src="https://www.w3schools.com/w3images/woods.jpg"
+                                    {% endif %} alt="Image"
+                                        class="w3-left w3-margin-right" style="width:50px">
+                                    <span class="w3-large">{{ i.company.name }}</span><br>
+                                    <span>{{ i.start|date }} to {{ i.end }}</span>
+                                    <span class="w3-right">
+                                        <i class="fa fa-line-chart"> &#x20B9;{{ i.profit|floatformat }}</i>
+                                    </span>
+                                </li>
+
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <hr>
+
+                <!-- Most Viewed -->
+                <div class="w3-card w3-margin">
+                    <div class="w3-container w3-padding">
+                        &nbsp
+                        <h4>Most Viewed</h4>
+                    </div>
+
+                    <ul class="w3-ul w3-hoverable w3-white">
+                        {% for i in company %}
+                            <a href="{% url 'analyzer:detail' i.slug %}" class="text-dark"
+                               style="text-decoration: none">
+                                <li class="w3-padding-16">
+                                    <img {% if i.company.image_url %}
+                                        src="{{ i.company.image_url }}"
+                                    {% elif i.image %}
+                                        src="{{ i.company.image.url }}"
+                                    {% else %}
+                                        src="https://www.w3schools.com/w3images/woods.jpg"
+                                    {% endif %} alt="Image"
+                                        class="w3-left w3-margin-right" style="width:50px">
+                                    <span class="w3-large">{{ i.name }}</span><br>
+                                    <span>{{ i.description|truncatewords:"6" }}</span>
+                                    <span class="w3-right">
+                                        <i class="fa fa-eye"> {{ i.views }}</i>
+                                    </span>
+                                </li>
+
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <hr>
+
+                <!-- Labels / tags -->
+                <div class="w3-card w3-margin">
+                    <div class="w3-container w3-padding">
+                        <h4>Tags</h4>
+                    </div>
+                    <div class="w3-container w3-white">
+                        <p>
+                            {% for tag in Tags %}
+                                <a href="{% url 'analyzer:search' %}?s={{ tag.tag }}" style="text-decoration: none">
+                                    <span class="badge badge-{% cycle 'success' 'warning' 'danger' 'info' 'dark' 'primary' 'secondary' %}">{{ tag.tag }}</span>
+                                </a>
+                            {% empty %}
+                                <span class="w3-tag w3-light-grey w3-hover-black w3-small w3-margin-bottom">
+                                        No Tags
+                                    </span>
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Chat Card -->
+                <div class="w3-card w3-margin w3-margin-top">
+                    <div class="w3-container w3-padding">
+                        &nbsp
+                        <h4>Chat With Us</h4>
+                    </div>
+
+                    <div class="w3-container w3-white">
+                        <div class="mesgs">
+                            <div class="msg_history" id="message_history">
+                                <div class='incoming_msg'>
+                                    <div class='incoming_msg_img'>
+                                        <img src='https://ptetutorials.com/images/user-profile.png'>
+                                    </div>
+                                    <div class='received_msg'>
+                                        <div class='received_withd_msg'>
+                                            <p>Ask your queries about Investment</p>
+                                            <span class="time_date">
+                                                {% now 'P ' %} | Today
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="type_msg">
+                                <div class="input_msg_write">
+                                    <input type="text" class="write_msg" placeholder="Type a message" id="question"/>
+                                    <button class="msg_send_btn" type="button" id="send_message">
+                                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+
+
+                <!-- END Introduction Menu -->
+            </div>
+
+            <!-- END GRID -->
+        </div>
+        <br>
+        <!-- END w3-content -->
+    </div>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery.ui.js' %}"></script>
+    <script>
+        $("#question").keyup(function (e) {
+            if (e.which === 13) {
+                const que = $(this).val();
+                $(this).val('');
+                $('#message_history').append(
+                    "<div class='outgoing_msg'>\n" +
+                    "       <div class='sent_msg'>\n" +
+                    "             <p>" + que + "</p>\n" +
+                    "                          <span class='time_date'> {% now 'P ' %} | Today</span></div>\n" +
+                    "             </div>\n" +
+                    "</div>"
+                );
+                $.ajax({
+                    url: '/get-reply',
+                    data: {
+                        'question': que
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        $('#message_history').append(
+                            "<div class='incoming_msg'>\n" +
+                            "                                <div class='incoming_msg_img'>\n" +
+                            "                                    <img src='https://ptetutorials.com/images/user-profile.png'>\n" +
+                            "                                </div>\n" +
+                            "                                <div class='received_msg'>\n" +
+                            "                                    <div class='received_withd_msg'>\n" +
+                            "                                        <p id='received'>" + data.answer + "</p>\n" +
+                            "                                        <span class=\"time_date\"> {% now 'P ' %} | Today </span>\n" +
+                            "                                    </div>\n" +
+                            "                                </div>\n" +
+                            "                            </div>\n"
+                        );
+
+                        $('#message_history').animate({
+                            scrollTop: $('#message_history').get(0).scrollHeight
+                        }, 2000);
+                    }
+                });
+            }
+        });
+        $('#send_message').click(function () {
+            var e = jQuery.Event("keyup");
+            e.which = 13;
+            e.keyCode = 13;
+            $("#question").trigger(e);
+        });
+    </script>
+{% endblock %}
+<!-- Footer -->
+{% block painator %}
+    {% if is_paginated %}
+        <div class="w3-center">
+            <div class="w3-bar w3-round">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="w3-bar-item w3-button">&laquo;</a>
+                {% else %}
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="w3-bar-item w3-button">&laquo;</a>
+                {% endif %}
+
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <a href="?page={{ i }}" class="w3-bar-item w3-button w3-white">{{ i }}</a>
+
+                    {% elif i > page_obj.number|add:'-4' and i < page_obj.number|add:'4' %}
+                        <a href="?page={{ i }}" class="w3-bar-item w3-button ">{{ i }}</a>
+                    {% endif %}
+
+
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="w3-bar-item w3-button">&raquo;</a>
+                {% else %}
+                    <a href="?page=1" class="w3-bar-item w3-button">&laquo;</a>
+                {% endif %}
+
+
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

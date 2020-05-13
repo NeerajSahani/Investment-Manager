@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Investment Guide Share Market, Mutual Funds, etc">
+    <meta name="keywords" content="Investment, Share Market, Stocks, Guide">
+    <meta name="author" content="Neeraj Sahani">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <meta name="google-site-verification" content="pYL9T47drBoWz4kqP4jFRtQ8jRNd-uWLVKDk67Pl1_Y"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif
+        }
+
+        @media screen and  (min-width: 600px) {
+            img.responsive {
+                height: auto;
+            }
+
+            div.size {
+                height: auto;
+            }
+        }
+
+
+    </style>
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+{% include 'analyzer/navbar.html' %}
+{% block body %}
+{% endblock %}
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-margin-top" style="background-color: #2d3246; color: white">
+    <!-- Pagination -->
+    {% block painator %}
+    {% endblock %}
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+        <div class="row">
+            <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+                <h5 class="font-weight-bold text-uppercase mb-4">About App</h5>
+                <p>Here you can compare hundreds of companies for better investment results.</p>
+                <p>Support us</p>
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none">
+
+            <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+                <!-- Links -->
+                <h5 class="font-weight-bold text-uppercase mb-4">Links</h5>
+
+                <ul class="list-unstyled">
+                    <li><p><a href="https://programmerblog.pythonanywhere.com/about" style="color: white">About
+                        Developer</a></p></li>
+                    <li><p><a href="#!" style="color: white">ABOUT US</a></p></li>
+                    <li><p><a href="https://programmerblog.pythonanywhere.com" style="color: white">BLOG</a></p></li>
+                    <li><p><a href="#!" style="color: white">AWARDS</a></p></li>
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+                <!-- Contact details -->
+                <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
+                <ul class="list-unstyled">
+                    <li><p><i class="fa fa-home mr-3"></i> Bargadwa HN 255B India</p></li>
+                    <li><p><i class="fa fa-envelope mr-4"></i> investment.manager.2019@gmail.com</p></li>
+                    <li><p><i class="fa fa-phone mr-3"></i> +91 829-970-4171</p></li>
+                    <li><p><i class="fa fa-phone mr-3"></i> +91 879-564-6465</p></li>
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+
+                <!-- Social buttons -->
+                <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
+
+                <!-- Facebook -->
+                <a class="btn-floating btn-fb" href="" style="color: white">
+                    <i class="fa fa-facebook-f"></i>
+                </a>
+                <!-- Twitter -->
+                <a href="" class="btn-floating btn-tw" style="color: white">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <!-- Google +-->
+                <a href="" class="btn-floating btn-gplus" style="color: white">
+                    <i class="fa fa-google-plus-g"></i>
+                </a>
+
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+    </div>
+    <!-- Footer Links -->
+
+</footer>
+</body>
+</html>

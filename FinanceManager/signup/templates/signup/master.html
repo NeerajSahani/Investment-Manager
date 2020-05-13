@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'signup/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'signup/css/style.css' %}">
+</head>
+<body>
+{% include 'analyzer/navbar.html' %}
+{% block body %}
+{% endblock %}
+<!-- JS -->
+<script src="{% static 'signup/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'signup/js/main.js' %}"></script>
+</body>
+</html>

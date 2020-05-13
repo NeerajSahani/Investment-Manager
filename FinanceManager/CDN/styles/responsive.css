@@ -1,0 +1,562 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******************************
+
+[Table of Contents]
+
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px
+11. 539px
+12. 479px
+13. 400px
+
+******************************/
+
+/************
+1. 1600px
+************/
+
+@media only screen and (max-width: 1600px)
+{
+	
+}
+
+/************
+2. 1440px
+************/
+
+@media only screen and (max-width: 1440px)
+{
+	
+}
+
+/************
+3. 1380px
+************/
+
+@media only screen and (max-width: 1380px)
+{
+	
+}
+
+/************
+3. 1280px
+************/
+
+@media only screen and (max-width: 1280px)
+{
+	
+}
+
+/************
+4. 1199px
+************/
+
+@media only screen and (max-width: 1199px)
+{
+	.featured_container
+	{
+		width: 100%;
+		padding-left: 167px;
+		margin-top: 0px;
+	}
+	.footer_contact_info
+	{
+		padding-right: 0px;
+	}
+}
+
+/************
+4. 1100px
+************/
+
+@media only screen and (max-width: 1100px)
+{
+	
+}
+
+/************
+5. 1024px
+************/
+
+@media only screen and (max-width: 1024px)
+{
+	
+}
+
+/************
+6. 991px
+************/
+
+@media only screen and (max-width: 991px)
+{
+	.main_nav
+	{
+		display: none;
+	}
+	.hamburger
+	{
+		display: inline-block;
+		margin-left: 25px;
+		vertical-align: middle;
+	}
+	.top_bar_contact_list li > div
+	{
+		font-size: 10px;
+	}
+	.top_bar_contact_list li:first-child
+	{
+		margin-right: 32px !important;
+	}
+	.top_bar_contact_list li:not(:last-child)
+	{
+		margin-right: 23px !important;
+	}
+	.top_bar_login ul li a
+	{
+		font-size: 10px;
+	}
+	.home_slider_nav_container
+	{
+		top: -51px;
+	}
+	.featured
+	{
+		padding-bottom: 60px;
+	}
+	.featured_container
+	{
+		padding-left: 0;
+		margin-top: 60px;
+	}
+	.featured_col:first-child
+	{
+		padding-right: 15px;
+	}
+	.featured_col:last-child
+	{
+		padding-left: 15px;
+	}
+	.featured_background
+	{
+		height: 354px;
+	}
+	.home_title
+	{
+		font-size: 56px;
+	}
+	.course_search
+	{
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.courses_slider_nav
+	{
+		display: none;
+	}
+	.milestone_col:not(:last-child)
+	{
+		margin-bottom: 80px;
+	}
+	.grouped_col:not(:last-child)
+	{
+		margin-bottom: 80px;
+	}
+	.video_container_outer
+	{
+		height: 388px;
+	}
+	.footer_col:not(:last-child)
+	{
+		margin-bottom: 80px;
+	}
+}
+
+/************
+7. 959px
+************/
+
+@media only screen and (max-width: 959px)
+{
+	
+}
+
+/************
+8. 880px
+************/
+
+@media only screen and (max-width: 880px)
+{
+	
+}
+
+/************
+9. 768px
+************/
+
+@media only screen and (max-width: 768px)
+{
+	
+}
+
+/************
+10. 767px
+************/
+
+@media only screen and (max-width: 767px)
+{
+	.top_bar
+	{
+		display: none;
+	}
+	.header.scrolled
+	{
+		top: 0px;
+	}
+	.search_button
+	{
+		display: none;
+	}
+	.home_slider_nav_container
+	{
+		display: none !important;
+	}
+	.course_search_form > div
+	{
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.video_container_outer
+	{
+		height: 287px;
+	}
+}
+
+/************
+11. 575px
+************/
+
+@media only screen and (max-width: 575px)
+{
+	p
+	{
+		font-size: 13px;
+	}
+	h2
+	{
+		font-size: 20px;
+	}
+	.section_title h2
+	{
+		font-size: 20px;
+	}
+	.section_subtitle
+	{
+		font-size: 13px;
+		margin-top: 47px;
+	}
+	.menu
+	{
+		width: 100%;
+		right: -100%;
+		padding-left: 30px;
+		padding-right: 30px;
+		padding-top: 80px;
+	}
+	.menu_nav ul li a
+	{
+		font-size: 14px;
+	}
+	.menu_close_container
+	{
+		right: 30px;
+	}
+	.menu .search
+	{
+		margin-bottom: 54px;
+	}
+	.menu .search_input
+	{
+		height: 32px;
+	}
+	.menu .search_input::-webkit-input-placeholder
+	{
+		font-size: 12px !important;
+	}
+	.menu .search_input:-moz-placeholder
+	{
+		font-size: 12px !important;
+	}
+	.menu .search_input::-moz-placeholder
+	{
+		font-size: 12px !important;
+	} 
+	.menu .search_input:-ms-input-placeholder
+	{ 
+		font-size: 12px !important;
+	}
+	.menu .search_input::input-placeholder
+	{
+		font-size: 12px !important;
+	}
+	.menu_extra
+	{
+		right: 30px;
+		bottom: 15px;
+	}
+	.menu_phone, .menu_social
+	{
+		font-size: 9px;
+	}
+	.menu_social
+	{
+		margin-top: 2px;
+	}
+	.header_search_button i
+	{
+		font-size: 14px;
+	}
+	.button_arrow
+	{
+		height: 47px;
+	}
+	.header_content
+	{
+		height: 50px;
+	}
+	.header.scrolled .header_content
+	{
+		height: 50px;
+	}
+	.logo_img
+	{
+		width: 40px;
+	}
+	.logo_img img
+	{
+		max-width: 100%;
+	}
+	.logo_text
+	{
+		font-size: 12px;
+		-webkit-transform: translateY(-1px);
+		-moz-transform: translateY(-1px);
+		-ms-transform: translateY(-1px);
+		-o-transform: translateY(-1px);
+		transform: translateY(-1px);
+	}
+	.home_container
+	{
+		top: calc((100vh + 37px) / 2);
+		-webkit-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		transform: translateY(-50%);
+		left: 0;
+		width: 100%;
+	}
+	.home_title
+	{
+		font-size: 36px;
+	}
+	.home_logo
+	{
+		width: 163px;
+		height: 110px;
+	}
+	.home_text
+	{
+		margin-top: -15px;
+	}
+	.home_subtitle
+	{
+		font-size: 14px;
+	}
+	.home_buttons
+	{
+		display: none;
+	}
+	.featured_content
+	{
+		padding-left: 30px;
+		padding-right: 30px;
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+	.featured_text,
+	.course_text
+	{
+		font-size: 13px;
+	}
+	.featured_tag,
+	.course_tag
+	{
+		height: 27px;
+	}
+	.featured_tag a,
+	.course_tag a
+	{
+		font-size: 12px;
+		line-height: 27px;
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+	.featured_author_name,
+	.course_author_name
+	{
+		margin-left: 8px;
+	}
+	.featured_author_name, .featured_author_name a,
+	.featured_sales,
+	.course_author_name, .course_author_name a,
+	.course_sales
+	{
+		font-size: 10px;
+	}
+	.course_body
+	{
+		padding-left: 30px;
+		padding-right: 30px;
+		padding-top: 45px;
+	}
+	.course_title h3 a
+	{
+		font-size: 18px;
+	}
+	.course_price
+	{
+		font-size: 12px;
+	}
+	.course_price span
+	{
+		font-size: 14px;
+		-webkit-transform: translateY(1px);
+	    -moz-transform: translateY(1px);
+	    -ms-transform: translateY(1px);
+	    -o-transform: translateY(1px);
+	    transform: translateY(1px);
+	}
+	.milestone_icon
+	{
+		width: 61px;
+		height: 61px;
+	}
+	.milestone_counter
+	{
+		font-size: 30px;
+	}
+	.milestone_text
+	{
+		font-size: 14px;
+	}
+	.event_body
+	{
+		padding-left: 20px;
+	}
+	.event_date
+	{
+		width: 53px;
+		height: 53px;
+	}
+	.event_day
+	{
+		font-size: 18px;
+	}
+	.event_month
+	{
+		font-size: 9px;
+	}
+	.event_title a
+	{
+		font-size: 14px;
+	}
+	.event_subtitle
+	{
+		font-size: 12px;
+	}
+	.news_post_body
+	{
+		padding-left: 20px;
+	}
+	.news_post_title a
+	{
+		font-size: 14px;
+	}
+	.news_post_date
+	{
+		font-size: 10px;
+	}
+	.news_post_author, .news_post_author a
+	{
+		font-size: 10px;
+	}
+	.join .section_subtitle
+	{
+		font-size: 13px;
+	}
+	.grouped_title
+	{
+		font-size: 24px;
+	}
+	.accordion
+	{
+		font-size: 14px;
+	}
+}
+
+/************
+11. 539px
+************/
+
+@media only screen and (max-width: 539px)
+{
+	
+}
+
+/************
+12. 480px
+************/
+
+@media only screen and (max-width: 480px)
+{
+	.home_title
+	{
+		font-size: 24px;
+	}
+	.home_subtitle
+	{
+		font-size: 13px;
+	}
+	.featured_title h3 a
+	{
+		font-size: 18px;
+	}
+}
+
+/************
+13. 479px
+************/
+
+@media only screen and (max-width: 479px)
+{
+	
+}
+
+/************
+14. 400px
+************/
+
+@media only screen and (max-width: 400px)
+{
+	
+}

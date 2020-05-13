@@ -1,0 +1,127 @@
+{% extends 'signup/master.html' %}
+{% block title %}Signup :Finance Seeker{% endblock %}
+{% load static %}
+{% block body %}
+    {% for field in form %}
+        {% if field.errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Error!</strong> {{ field.errors }}
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="main">
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST"
+                              enctype="multipart/form-data" onsubmit="return validateForm(this)">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-account"></i></label>
+                                <input type="text" name="username" placeholder="Username" maxlength="150" autofocus
+                                       required id="id_username">
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-arrow-right"></i></label>
+                                <input type="text" name="first_name" placeholder="First Name" maxlength="30"
+                                       id="id_first_name">
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-arrow-left"></i></label>
+                                <input type="text" name="last_name" placeholder="Last Name" maxlength="150"
+                                       id="id_last_name">
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" placeholder="E-mail" xyz="email" maxlength="254"
+                                       id="id_email">
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-phone-in-talk"></i></label>
+                                <input type="text" name="mobile" placeholder="Mobile Number" maxlength="10"
+                                       id="id_mobile">
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-gesture"></i></label>
+                                <input type="text" name="occupation" placeholder="Occupation" maxlength="50"
+                                       id="id_occupation">
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-camera-add"></i></label>
+                                <input type="file" name="profile_image" accept="image/*" required id="id_profile_image">
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-male-female"></i></label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <select name="gender" id="id_gender" style="width: 250px">
+                                    <option value="" selected>Select Gender</option>
+
+                                    <option value="M">Male</option>
+
+                                    <option value="F">Female</option>
+
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-calendar"></i></label>
+                                <input type="date" name="date_of_birth" class="vDateField" id="id_date_of_birth">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-shield-security"></i></label>
+                                <input type="password" name="password1" placeholder="Password" required
+                                       id="id_password1">
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="zmdi zmdi-shield-check"></i></label>
+                                <input type="password" name="password2" placeholder="Confirm Password" required
+                                       id="id_password2">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="checkbox" name="agree" id="agree-term" class="agree-term"/>
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all
+                                    statements in <a href="#" class="term-service">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'signup/images/signin-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{% url 'signup:loginView' %}" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script>
+        function validateForm(FORM) {
+            if (FORM.agree.checked == false) {
+                alert("please select agree");
+                return false;
+            }
+            else{
+                return true;
+            }
+
+        }
+    </script>
+{% endblock %}

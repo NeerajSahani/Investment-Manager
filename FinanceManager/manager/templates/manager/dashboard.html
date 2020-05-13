@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Investment Dashboard{% endblock %}
+{% block body %}
+    <div class="container" style="padding-top: 20px">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row">
+                    {% for i in investment %}
+                        <a href="{% url 'manager:detail' i.id %}" style="text-decoration: none">
+                            <div class="col">
+                                <div class="card text-white bg-{% cycle 'success' 'warning' 'danger' 'info' 'dark' %} mb-3"
+                                     style="width: 18rem;">
+                                    <div class="card-header"><h5
+                                            class="card-title">{{ i.company|truncatechars:20 }}</h5></div>
+                                    <div class="card-body">
+                                        <h6 class="card-text"> {{ i.units }} units<br>
+                                            {{ i.start_date }} - {{ i.end_date }}
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% empty %}
+                        <div class="col">
+                            <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+                                <div class="card-header">No investments till now</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Add investment details to view here</h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}</div>
+            </div>
+            <div class="col-lg-3">
+                <a href="{% url 'manager:add-plans' %}" style="text-decoration: none">
+                    <div class="col">
+                        <div class="card text-white bg-warning mb-3" style="width: 18rem;">
+                            <div class="card-header">No investments till now</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Click to add investment details</h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    </div>
+{% endblock %}

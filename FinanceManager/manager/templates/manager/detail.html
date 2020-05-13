@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load extras %}
+{% block title %}DASHBOARD | {{ investment.company|upper }}{% endblock %}
+{% load extras %}
+{% block head %}
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="{% static 'styles/sb-admin-2.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <br>
+    <div class="container">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"> DASHBOARD | {{ investment.company|upper }}</h1>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+
+            <!-- Base Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2 bg-gradient-danger">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Base Amount
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-white">
+                                    {% if investment.company.currency == 'USD' %} $ {% else %}
+                                        &#x20B9; {% endif %}{{ base_price }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Today's Price Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2 bg-gradient-warning">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Today's Price
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-white">
+                                    {% if investment.company.currency == 'USD' %} $ {% else %}
+                                        &#x20B9; {% endif %}{{ today_price }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Start Date Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2 bg-gradient-success">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Start Date</div>
+                                <div class="h5 mb-0 font-weight-bold text-white">
+                                    {{ investment.start_date }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End Date) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2 bg-gradient-info">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Days To End
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-white">
+                                    {{ investment.end_date|days_from_today }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Content Row -->
+
+        <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Comparison Real Vs Predicted</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body" style="height: 350px;">
+                        <div class="chart-area">
+                            {{ comparison|safe }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gauge Chart -->
+            <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Profit Predictor</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-pie">
+                            {{ gauge_chart|safe }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+
+                <!-- Result Card Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-danger">Result</h6>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="small font-weight-bold">Unit Shares <span
+                                class="float-right">{{ investment.units }}</span></h4>
+                        <br>
+                        <h4 class="small font-weight-bold">Profit / Loss <span class="float-right">
+                            {{ today_price|pct:base_price }}%
+                        </span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-warning" role="progressbar"
+                                 style="width: {{ today_price|pct:base_price|absolute }}%"
+                                 aria-valuenow="{{ today_price|pct:base_price }}%" aria-valuemin="0"
+                                 aria-valuemax="100"></div>
+                        </div>
+
+                        <h4 class="small font-weight-bold"> Deviation <span
+                                class="float-right">{{ today_predicted|pct:today_price }} %</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar" role="progressbar"
+                                 style="width: {{ today_predicted|pct:today_price|absolute }}%"
+                                 aria-valuenow="{{ today_predicted|pct:today_price }}"
+                                 aria-valuemin="{{ today_predicted|pct:today_price }}" aria-valuemax="100"></div>
+                        </div>
+
+                        <h4 class="small font-weight-bold">Gain Till Now <span class="float-right">
+                            {{ base_price|sub:today_predicted }}
+                        </span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-info" role="progressbar"
+                                 style="width: {{ base_price|sub:today_predicted }}%"
+                                 aria-valuenow="{{ base_price|sub:today_predicted }}"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color System -->
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card bg-primary text-white shadow">
+                            <div class="card-body">
+                                <h5>Start Date</h5>
+                                <div class="text-white-50 small">{{ investment.start_date }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="card bg-success text-white shadow">
+                            <div class="card-body">
+                                Base Amount
+                                <div class="text-white-50 small">{{ base_price }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="card bg-info text-white shadow">
+                            <div class="card-body">
+                                Today Price
+                                <div class="text-white-50 small">{{ today_price }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="card bg-warning text-white shadow">
+                            <div class="card-body">
+                                Today Predicted
+                                <div class="text-white-50 small">{{ today_predicted }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="card bg-danger text-white shadow">
+                            <div class="card-body">
+                                Purchased Units
+                                <div class="text-white-50 big">{{ investment.units }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="card bg-secondary text-white shadow">
+                            <div class="card-body">
+                                Result
+                                <div class="text-white-50 small">{% result today_price base_price investment.units %}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 mb-4">
+
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Daily Movement in Prices</h6>
+                    </div>
+                    <div class="card-body">
+                        {{ candlestick|safe }}
+                    </div>
+                </div>
+
+                <!-- Approach -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">About Company</h6>
+                    </div>
+                    <div class="card-body">
+                        <p>{{ investment.company.description|truncatewords:30 }}</p>
+                        <a href="{% url 'analyzer:detail' investment.company.slug %}"><p class="mb-0">click here to
+                            read full article...</p></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+{% endblock %}

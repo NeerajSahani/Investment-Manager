@@ -1,0 +1,33 @@
+{% load static %}
+{% include 'analyzer/navbar.html' %}
+<link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
+<link rel="stylesheet" href="{% static 'admin/css/fonts.css' %}">
+<link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
+
+<style>
+    textarea {
+        width: 100%;
+    }
+</style>
+<div>
+    <div class="container-fluid">
+        <fieldset class="module aligned ">
+            <div id="content">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-row">
+                            {{ field.errors }}
+                            {{ field.label_tag }} {{ field }}
+                        </div>
+                    {% endfor %}
+                    <div class="submit-row">
+                        <input type="submit" value="Submit">
+                        <input type="reset" value="Reset">
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+    </div>
+</div>
