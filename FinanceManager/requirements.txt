@@ -41,6 +41,6 @@ sklearn==0.0
 sqlparse==0.3.1
 tqdm==4.46.0
 tzlocal==2.1
-urllib3==1.25.9
+urllib3==1.26.5
 Werkzeug==1.0.1
 yfinance==0.1.54
