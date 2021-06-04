@@ -11,7 +11,7 @@ dash-core-components==1.9.0
 dash-html-components==1.0.3
 dash-renderer==1.3.0
 dash-table==4.6.2
-Django==3.0.6
+Django==3.1.9
 django-plotly-dash==1.3.1
 dpd-components==0.1.0
 Flask==1.1.2
