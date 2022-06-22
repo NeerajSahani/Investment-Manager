@@ -24,7 +24,7 @@ joblib==0.14.1
 MarkupSafe==1.1.1
 multitasking==0.0.9
 nltk==3.5
-numpy==1.18.4
+numpy==1.22.0
 pandas==1.0.1
 Pillow==7.1.2
 plotly==4.7.1
