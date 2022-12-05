@@ -13,7 +13,7 @@ EMAIL_PORT = 587
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-SECRET_KEY = 'd5mowjiz@o9$061^mcxu#^!vz58%83!o^o9b#$(g5wiq2(6-qc'
+SECRET_KEY = ''
 
 ALLOWED_HOSTS = []
 
